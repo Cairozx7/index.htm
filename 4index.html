@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ApexMotors | Studio de Personalização</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        amber: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        },
+                        obsidian: {
+                            900: '#0b0f17',
+                            950: '#05070a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        .paint-layer {
+            transition: background-color 0.4s ease, opacity 0.4s ease;
+            mix-blend-mode: multiply;
+        }
+        .dark .paint-layer {
+            mix-blend-mode: color-burn;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-obsidian-950 text-slate-900 dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col font-sans antialiased selection:bg-amber-500 selection:text-black">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-50 backdrop-blur-xl bg-white/80 dark:bg-obsidian-950/80 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-600 to-amber-400 flex items-center justify-center text-black font-extrabold shadow-lg shadow-amber-500/20 group-hover:scale-105 transition-transform">
+                    <i data-lucide="shield-check" class="w-6 h-6 stroke-[2.5]"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-black tracking-widest uppercase leading-none">APEX<span class="text-amber-500">MOTORS</span></span>
+                    <span class="text-[9px] tracking-[0.3em] uppercase font-bold text-slate-400">Exclusive Luxury</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center gap-8 font-semibold text-sm tracking-wide">
+                <a href="#hero" class="hover:text-amber-500 transition-colors">Configurador</a>
+                <a href="#catalogo" class="hover:text-amber-500 transition-colors">Showroom</a>
+                <a href="#simulador" class="hover:text-amber-500 transition-colors">Financiamento</a>
+            </nav>
+
+            <!-- Action Controls -->
+            <div class="flex items-center gap-4">
+                <!-- Dark Mode Toggle Button -->
+                <button id="theme-toggle" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900 text-slate-700 dark:text-slate-300 transition-all flex items-center justify-center" title="Alternar Modo Dark/Light">
+                    <i data-lucide="sun" class="w-5 h-5 hidden dark:block text-amber-400"></i>
+                    <i data-lucide="moon" class="w-5 h-5 block dark:hidden text-slate-700"></i>
+                </button>
+
+                <a href="#catalogo" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-bold px-6 py-2.5 rounded-xl shadow-lg shadow-amber-500/20 transition-all hover:scale-[1.02]">
+                    <i data-lucide="sparkles" class="w-4 h-4"></i> Explorar Estoque
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Hero Section com Carro Estático de Lataria Dinâmica -->
+        <section id="hero" class="relative py-12 lg:py-20 overflow-hidden">
+            <!-- Glow de Iluminação de Estúdio -->
+            <div id="ambient-glow" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-600/20 rounded-full blur-[120px] pointer-events-none transition-all duration-500"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Lado Esquerdo: Controles de Cor -->
+                    <div class="lg:col-span-5 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-400 text-xs font-bold uppercase tracking-wider">
+                            <span class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
+                            Estúdio de Pintura em Tempo Real
+                        </div>
+                        
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1]">
+                            O mesmo modelo. <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600">Sua cor exclusiva.</span>
+                        </h1>
+                        
+                        <p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg font-normal leading-relaxed">
+                            Alterne a cor da lataria do Apex GT V8 instantaneamente. O modelo e a iluminação permanecem perfeitos em qualquer tonalidade.
+                        </p>
+
+                        <!-- Painel de Seleção de Cor -->
+                        <div class="p-6 rounded-2xl bg-white dark:bg-obsidian-900 border border-slate-200 dark:border-slate-800 shadow-2xl space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-2">
+                                    <i data-lucide="palette" class="w-4 h-4 text-amber-500"></i> Cor da Pintura:
+                                </span>
+                                <span id="color-name-display" class="text-xs font-extrabold uppercase tracking-widest text-amber-500">Vermelho Diablo</span>
+                            </div>
+
+                            <!-- Botões da Paleta de Cores -->
+                            <div class="grid grid-cols-5 gap-3">
+                                <button type="button" onclick="changeCarPaint('red', 'Vermelho Diablo')" class="color-btn relative aspect-square rounded-xl bg-red-600 border-2 border-white dark:border-slate-800 shadow-lg transition-all ring-2 ring-amber-500 scale-105" title="Vermelho Diablo"></button>
+                                
+                                <button type="button" onclick="changeCarPaint('black', 'Preto Stealth')" class="color-btn relative aspect-square rounded-xl bg-slate-950 border-2 border-white dark:border-slate-800 shadow-lg transition-all" title="Preto Stealth"></button>
+                                
+                                <button type="button" onclick="changeCarPaint('silver', 'Prata Titanium')" class="color-btn relative aspect-square rounded-xl bg-slate-300 border-2 border-white dark:border-slate-800 shadow-lg transition-all" title="Prata Titanium"></button>
+                                
+                                <button type="button" onclick="changeCarPaint('blue', 'Azul Safira')" class="color-btn relative aspect-square rounded-xl bg-blue-600 border-2 border-white dark:border-slate-800 shadow-lg transition-all" title="Azul Safira"></button>
+
+                                <button type="button" onclick="changeCarPaint('yellow', 'Amarelo Giallo')" class="color-btn relative aspect-square rounded-xl bg-amber-400 border-2 border-white dark:border-slate-800 shadow-lg transition-all" title="Amarelo Giallo"></button>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2">
+                            <button onclick="openModal('Apex GT V8 Supercharged')" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold py-4 px-8 rounded-xl shadow-xl shadow-amber-500/20 transition-all hover:scale-[1.02] flex items-center justify-center gap-2">
+                                <i data-lucide="phone-call" class="w-5 h-5"></i> Agendar Test Drive
+                            </button>
+                            <a href="#simulador" class="bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 font-bold py-4 px-8 rounded-xl transition-all text-center flex items-center justify-center gap-2">
+                                <i data-lucide="calculator" class="w-5 h-5"></i> Simular Valor
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Lado Direito: Imagem Fixa do Carro com Máscara de Cor de Pintura Dinâmica -->
+                    <div class="lg:col-span-7 relative">
+                        <div class="relative w-full aspect-[16/10] rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-2xl bg-slate-950 group">
+                            
+                            <!-- 1. Imagem Base de Alta Resolução (Sempre o Mesmo Modelo e Ângulo) -->
+                            <img id="base-car-img" 
+                                 src="https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1200&q=80" 
+                                 alt="Apex GT Supercar" 
+                                 class="w-full h-full object-cover object-center absolute inset-0">
+
+                            <!-- 2. Camada Dinâmica de Tinta (Muda de Cor sem Mudar a Imagem do Carro) -->
+                            <div id="paint-overlay" 
+                                 class="paint-layer absolute inset-0 w-full h-full pointer-events-none opacity-60" 
+                                 style="background-color: #ef4444;"></div>
+
+                            <!-- 3. Camada de Brilho de Superfície e Reflexos de Vidro -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-white/10 pointer-events-none"></div>
+
+                            <!-- Specs Badge Flutuante -->
+                            <div class="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-slate-950/80 backdrop-blur-md border border-white/10 text-white flex items-center justify-between gap-4">
+                                <div class="flex items-center gap-4">
+                                    <div class="p-2.5 rounded-xl bg-amber-500/20 text-amber-400">
+                                        <i data-lucide="gauge" class="w-6 h-6"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-extrabold text-sm sm:text-base">Apex GT V8 Supercharged</p>
+                                        <p class="text-xs text-slate-400">750 CV • 0-100 km/h em 2.8s • V-Max 340 km/h</p>
+                                    </div>
+                                </div>
+                                <span class="hidden sm:inline-block text-xs font-black px-3 py-1.5 rounded-lg bg-amber-500 text-slate-950 uppercase tracking-wider">0 KM</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Showroom / Catálogo -->
+        <section id="catalogo" class="py-20 border-t border-slate-200 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-amber-500">Curadoria Exclusiva</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-1">Acervo do Showroom</h2>
+                    </div>
+                </div>
+
+                <div id="cars-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+            </div>
+        </section>
+
+        <!-- Simulador -->
+        <section id="simulador" class="py-20 bg-slate-100 dark:bg-obsidian-900/40 border-t border-slate-200 dark:border-slate-800">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-white dark:bg-obsidian-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 sm:p-12 shadow-2xl space-y-8">
+                    <div class="text-center space-y-2">
+                        <span class="text-xs font-bold uppercase tracking-widest text-amber-500">Condições Especiais</span>
+                        <h2 class="text-3xl font-extrabold tracking-tight">Calculadora de Financiamento</h2>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-8 items-center">
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Valor do Veículo (R$)</label>
+                                <input type="number" id="sim-price" value="480000" step="20000" class="w-full bg-slate-50 dark:bg-obsidian-950 border border-slate-200 dark:border-slate-800 rounded-xl p-3.5 font-bold text-lg focus:outline-none focus:ring-2 focus:ring-amber-500">
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-xs font-bold uppercase tracking-wider mb-2">
+                                    <span class="text-slate-500">Entrada Recomendada:</span>
+                                    <span id="entry-val-display" class="text-amber-500 font-extrabold">R$ 150.000</span>
+                                </div>
+                                <input type="range" id="sim-entry" min="50000" max="400000" step="10000" value="150000" class="w-full accent-amber-500">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Prazo de Parcelamento</label>
+                                <select id="sim-months" class="w-full bg-slate-50 dark:bg-obsidian-950 border border-slate-200 dark:border-slate-800 rounded-xl p-3.5 font-bold focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                    <option value="24">24 meses</option>
+                                    <option value="36">36 meses</option>
+                                    <option value="48" selected>48 meses</option>
+                                    <option value="60">60 meses</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-50 dark:bg-obsidian-950 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 text-center space-y-4">
+                            <span class="text-xs font-bold uppercase tracking-widest text-slate-400">Parcela Mensal Estimada</span>
+                            <div id="sim-result" class="text-4xl sm:text-5xl font-black text-amber-500">
+                                R$ 8.920<span class="text-xs font-bold text-slate-500">/mês</span>
+                            </div>
+                            <button onclick="openModal('Proposta VIP')" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold py-3.5 rounded-xl transition-all shadow-lg shadow-amber-500/20">
+                                Solicitar Análise VIP
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal de Contato -->
+    <div id="modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-obsidian-900 border border-slate-200 dark:border-slate-800 w-full max-w-md rounded-3xl p-8 shadow-2xl relative space-y-6">
+            <button onclick="closeModal()" class="absolute top-6 right-6 p-2 text-slate-400 hover:text-slate-600 dark:hover:text-white">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <div>
+                <span class="text-xs font-bold uppercase tracking-widest text-amber-500">Atendimento Exclusivo</span>
+                <h3 class="text-2xl font-extrabold mt-1">Agendar Atendimento</h3>
+                <p id="modal-car-name" class="text-xs text-slate-500 font-semibold mt-1">Apex GT V8 Supercharged</p>
+            </div>
+
+            <form onsubmit="handleFormSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">Nome Completo</label>
+                    <input type="text" required placeholder="Digite seu nome" class="w-full bg-slate-50 dark:bg-obsidian-950 border border-slate-200 dark:border-slate-800 rounded-xl p-3.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">Telefone / WhatsApp</label>
+                    <input type="tel" required placeholder="(85) 99999-9999" class="w-full bg-slate-50 dark:bg-obsidian-950 border border-slate-200 dark:border-slate-800 rounded-xl p-3.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500">
+                </div>
+                <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold py-4 rounded-xl transition-all shadow-lg shadow-amber-500/20">
+                    Enviar para Consultor
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-obsidian-950 py-10 text-center text-xs text-slate-500">
+        <p class="font-extrabold tracking-widest uppercase text-slate-400">APEXMOTORS ©️ 2026. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Logic Script -->
+    <script>
+        lucide.createIcons();
+
+        // Dark Mode Toggle
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        } else {
+            document.documentElement.classList.add('dark');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Tabela de Cores da Lataria (Sem Mudar o Modelo da Imagem)
+        const paintColors = {
+            red: { color: '#ef4444', opacity: '0.6', glow: 'rgba(239, 68, 68, 0.2)' },
+            black: { color: '#090d16', opacity: '0.85', glow: 'rgba(15, 23, 42, 0.4)' },
+            silver: { color: '#cbd5e1', opacity: '0.5', glow: 'rgba(203, 213, 225, 0.2)' },
+            blue: { color: '#2563eb', opacity: '0.65', glow: 'rgba(37, 99, 235, 0.2)' },
+            yellow: { color: '#f59e0b', opacity: '0.65', glow: 'rgba(245, 158, 11, 0.2)' }
+        };
+
+        function changeCarPaint(key, name) {
+            const data = paintColors[key];
+            if (!data) return;
+
+            // Altera apenas a camada da tinta e a luz ambiente
+            const paintOverlay = document.getElementById('paint-overlay');
+            const ambientGlow = document.getElementById('ambient-glow');
+            const nameDisplay = document.getElementById('color-name-display');
+
+            paintOverlay.style.backgroundColor = data.color;
+            paintOverlay.style.opacity = data.opacity;
+            ambientGlow.style.backgroundColor = data.glow;
+            nameDisplay.innerText = name;
+
+            // Destaca o botão clicado
+            document.querySelectorAll('.color-btn').forEach(btn => {
+                btn.classList.remove('ring-2', 'ring-amber-500', 'scale-105');
+            });
+
+            if (window.event && window.event.currentTarget) {
+                window.event.currentTarget.classList.add('ring-2', 'ring-amber-500', 'scale-105');
+            }
+        }
+
+        // Catálogo
+        const showroomData = [
+            { id: 1, name: 'Apex GT V8 Supercharged', price: 'R$ 890.000', year: '2026', img: 'https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=800&q=80' },
+            { id: 2, name: 'Apex Crossover Ultra', price: 'R$ 620.000', year: '2026', img: 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=800&q=80' },
+            { id: 3, name: 'Apex Cyber EV Performance', price: 'R$ 750.000', year: '2026', img: 'https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80' },
+        ];
+
+        function renderShowroom() {
+            const grid = document.getElementById('cars-grid');
+            grid.innerHTML = '';
+
+            showroomData.forEach(car => {
+                grid.innerHTML += `
+                    <div class="bg-white dark:bg-obsidian-900 border border-slate-200 dark:border-slate-800 rounded-3xl overflow-hidden hover:border-amber-500/50 transition-all duration-300 hover:shadow-2xl group flex flex-col">
+                        <div class="h-56 relative overflow-hidden bg-slate-900">
+                            <img src="${car.img}" alt="${car.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-6 space-y-4 flex-grow flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs text-slate-400 font-bold tracking-wider">${car.year} • 0 KM</span>
+                                <h3 class="text-lg font-bold mt-0.5">${car.name}</h3>
+                            </div>
+                            <div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800">
+                                <span class="text-xl font-black text-amber-500">${car.price}</span>
+                                <button onclick="openModal('${car.name}')" class="bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 px-4 py-2.5 rounded-xl text-xs font-extrabold hover:bg-amber-500 dark:hover:bg-amber-500 hover:text-slate-950 transition-colors">
+                                    Tenho Interesse
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            lucide.createIcons();
+        }
+
+        // Simulador
+        const priceInput = document.getElementById('sim-price');
+        const entryInput = document.getElementById('sim-entry');
+        const entryDisplay = document.getElementById('entry-val-display');
+        const monthsInput = document.getElementById('sim-months');
+        const resultDisplay = document.getElementById('sim-result');
+
+        function calculateFinance() {
+            const price = parseFloat(priceInput.value) || 0;
+            const entry = parseFloat(entryInput.value) || 0;
+            const months = parseInt(monthsInput.value) || 48;
+
+            entryDisplay.innerText = `R$ ${entry.toLocaleString('pt-BR')}`;
+
+            const financed = price - entry;
+            if (financed <= 0) {
+                resultDisplay.innerHTML = 'R$ 0<span class="text-xs font-bold text-slate-500">/mês</span>';
+                return;
+            }
+
+            const interestRate = 0.0089;
+            const installment = (financed * (interestRate * Math.pow(1 + interestRate, months))) / (Math.pow(1 + interestRate, months) - 1);
+
+            resultDisplay.innerHTML = `R$ ${Math.round(installment).toLocaleString('pt-BR')}<span class="text-xs font-bold text-slate-500">/mês</span>`;
+        }
+
+        priceInput.addEventListener('input', calculateFinance);
+        entryInput.addEventListener('input', calculateFinance);
+        monthsInput.addEventListener('change', calculateFinance);
+
+        // Modal Functions
+        function openModal(carName) {
+            document.getElementById('modal-car-name').innerText = carName;
+            document.getElementById('modal').classList.remove('hidden');
+            document.getElementById('modal').classList.add('flex');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.add('hidden');
+            document.getElementById('modal').classList.remove('flex');
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            alert('Solicitação enviada com sucesso!');
+            closeModal();
+        }
+
+        renderShowroom();
+        calculateFinance();
+    </script>
+</body>
+</html>
