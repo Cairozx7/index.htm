@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mural de Estágios | Divulgue e encontre vagas</title>
+  <meta name="description" content="Cadastre a vaga de estágio da sua empresa e ela aparece na hora na tabela de divulgação.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ 
+  <header class="topo">
+    <div class="container topo-barra">
+      <a href="#inicio" class="marca">Mural de Estágios</a>
+      <nav class="menu" aria-label="Principal">
+        <a href="#vagas">Vagas</a>
+        <a href="#cadastrar" class="botao botao-pequeno">Divulgar vaga</a>
+      </nav>
+    </div>
+  </header>
+ 
+  <main id="inicio">
+ 
+    <section class="hero container">
+      <h1>Sua vaga de estágio na frente de quem procura.</h1>
+      <p class="lead">Preencha o formulário e a vaga aparece na hora na tabela de divulgação. Estudantes encontram oportunidades, empresas encontram novos talentos.</p>
+      <div class="hero-acoes">
+        <a href="#cadastrar" class="botao">Cadastrar vaga</a>
+        <a href="#vagas" class="botao botao-claro">Ver vagas abertas</a>
+      </div>
+      <p class="contador"><b id="total">0</b> vagas divulgadas</p>
+    </section>
+ 
+    <section id="cadastrar" class="secao container">
+      <div class="secao-topo">
+        <h2>Cadastre uma vaga</h2>
+        <p>Os campos com * são obrigatórios.</p>
+      </div>
+ 
+      <form id="form-vaga" class="formulario" novalidate>
+        <div class="campo">
+          <label for="empresa">Empresa *</label>
+          <input id="empresa" name="empresa" type="text" maxlength="60" required>
+          <span class="erro" data-erro="empresa"></span>
+        </div>
+        <div class="campo">
+          <label for="cargo">Vaga *</label>
+          <input id="cargo" name="cargo" type="text" maxlength="60" placeholder="Ex.: Estágio em Suporte de TI" required>
+          <span class="erro" data-erro="cargo"></span>
+        </div>
+        <div class="campo">
+          <label for="area">Área *</label>
+          <select id="area" name="area" required>
+            <option value="">Selecione</option>
+            <option>Tecnologia</option>
+            <option>Administração</option>
+            <option>Marketing</option>
+            <option>Design</option>
+            <option>Saúde</option>
+            <option>Engenharia</option>
+            <option>Outra</option>
+          </select>
+          <span class="erro" data-erro="area"></span>
+        </div>
+        <div class="campo">
+          <label for="modalidade">Modalidade *</label>
+          <select id="modalidade" name="modalidade" required>
+            <option value="">Selecione</option>
+            <option>Presencial</option>
+            <option>Híbrido</option>
+            <option>Remoto</option>
+          </select>
+          <span class="erro" data-erro="modalidade"></span>
+        </div>
+        <div class="campo">
+          <label for="cidade">Cidade *</label>
+          <input id="cidade" name="cidade" type="text" maxlength="40" required>
+          <span class="erro" data-erro="cidade"></span>
+        </div>
+        <div class="campo">
+          <label for="bolsa">Bolsa-auxílio (R$)</label>
+          <input id="bolsa" name="bolsa" type="number" min="0" step="50" placeholder="Ex.: 1200">
+        </div>
+        <div class="campo">
+          <label for="contato">E-mail para candidatura *</label>
+          <input id="contato" name="contato" type="email" maxlength="80" required>
+          <span class="erro" data-erro="contato"></span>
+        </div>
+        <div class="campo campo-largo">
+          <label for="descricao">Descrição</label>
+          <textarea id="descricao" name="descricao" rows="3" maxlength="240" placeholder="Principais atividades e requisitos"></textarea>
+        </div>
+        <div class="campo-largo">
+          <button type="submit" class="botao">Publicar vaga</button>
+        </div>
+      </form>
+    </section>
+ 
+    <section id="vagas" class="secao secao-escura">
+      <div class="container">
+        <div class="secao-topo">
+          <h2>Vagas abertas</h2>
+          <input id="busca" class="busca" type="search" placeholder="Buscar por empresa, vaga ou cidade" aria-label="Buscar vagas">
+        </div>
+ 
+        <div class="tabela-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Empresa</th>
+                <th>Vaga</th>
+                <th>Área</th>
+                <th>Modalidade</th>
+                <th>Cidade</th>
+                <th>Bolsa</th>
+                <th>Candidatura</th>
+                <th><span class="visualmente-oculto">Ações</span></th>
+              </tr>
+            </thead>
+            <tbody id="tabela-vagas"></tbody>
+          </table>
+        </div>
+        <p id="vazio" class="vazio" hidden>Nenhuma vaga encontrada. Cadastre a primeira no formulário acima.</p>
+      </div>
+    </section>
+ 
+  </main>
+ 
+  <footer class="rodape">
+    <div class="container">&copy; 2026 Mural de Estágios. Projeto acadêmico.</div>
+  </footer>
+ 
+  <script src="script.js"></script>
+</body>
+</html>
+ 
